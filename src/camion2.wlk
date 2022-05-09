@@ -1,4 +1,4 @@
-import cosas.*
+import cosas2.*
 
 object camion {
 	var property cosas = []
@@ -6,6 +6,7 @@ object camion {
 	
 	method cargar(cosa) {
 		cosas.add(cosa)
+		cosa.sufrirConsecuencia()
 	}
 	
 	method descargar(cosa) {

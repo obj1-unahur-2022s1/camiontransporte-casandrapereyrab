@@ -1,0 +1,111 @@
+import camion2.*
+import cosas2.*
+
+describe "knightRider" {
+	
+	test "total bultos" {
+		assert.equals(1, knightRider.totalBultos())
+	}
+	
+}
+
+describe "bumblebee" {
+	
+	test "total bultos" {
+		assert.equals(2, bumblebee.totalBultos())
+	}
+	
+	test "consecuencias" {
+		camion.cargar(bumblebee)
+		
+		assert.that(bumblebee.esRobot())
+	}
+}
+
+describe "paqueteLadrillos" {
+	
+	test "total bultos" {
+		paqueteLadrillos.cantidadLadrillos(150)
+		assert.equals(2, paqueteLadrillos.totalBultos())
+	}
+	
+	test "consecuencias" {
+		paqueteLadrillos.cantidadLadrillos(150)
+		camion.cargar(paqueteLadrillos)
+		
+		assert.equals(162, paqueteLadrillos.cantidadLadrillos())
+	}
+}
+
+describe "arena" {
+	
+	test "total bultos" {
+		
+		assert.equals(1, arena.totalBultos())
+	}
+	
+	test "consecuencias" {
+		arena.peso(150)
+		camion.cargar(arena)
+		
+		assert.equals(170, arena.peso())
+	}
+}
+
+describe "bateria antiaerea" {
+	
+	test "total bultos con misiles" {
+		bateriaAntiaerea.cargarMisiles()
+		
+		assert.equals(2, bateriaAntiaerea.totalBultos())
+	}
+	
+	test "consecuencias" {
+		camion.cargar(bateriaAntiaerea)
+		
+		assert.that(bateriaAntiaerea.estaConMisiles())
+	}
+}
+
+describe "contenedor portuario" {
+	
+	test "total bultos" {
+		contenedor.meterCosa(knightRider)
+		contenedor.meterCosa(bumblebee)
+		
+		assert.equals(4, contenedor.totalBultos())
+	}
+	
+	test "consecuencias" {
+		contenedor.meterCosa(bumblebee)
+		contenedor.meterCosa(bateriaAntiaerea)
+		camion.cargar(contenedor)
+		
+		assert.that(bumblebee.esRobot())
+		assert.that(bateriaAntiaerea.estaConMisiles())
+	}
+}
+
+describe "residuos radioactivos" {
+	
+	test "total bultos" {
+		
+		assert.equals(1, residuosRadioactivos.totalBultos())
+	}
+	
+	test "consecuencias" {
+		residuosRadioactivos.peso(50)
+		camion.cargar(residuosRadioactivos)
+		
+		assert.equals(65, residuosRadioactivos.peso())
+	}
+}
+
+describe "embalaje seguridad" {
+	
+	test "total bultos" {
+		
+		assert.equals(2, embalajeSeguridad.totalBultos())
+	}
+	
+}

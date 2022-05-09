@@ -1,2 +1,76 @@
 import camion.*
 import cosas.*
+
+describe "tests paquete de ladrillos" {
+	
+	test "peso" {
+		paqueteLadrillos.cantidadLadrillos(10)
+		
+		assert.equals(20, paqueteLadrillos.peso())
+	}
+	
+	test "peligrosidad" {
+		assert.equals(2, paqueteLadrillos.peligrosidad())
+	}
+}
+
+describe "tests bateria antiaerea" {
+	
+	test "peso sin misiles" {
+		assert.equals(200, bateriaAntiaerea.peso())
+	}
+	
+	test "peligrosidad sin misiles" {
+		assert.equals(0, bateriaAntiaerea.peligrosidad())
+	}
+	
+	test "peso con misiles" {
+		bateriaAntiaerea.cargarMisiles()
+		assert.equals(300, bateriaAntiaerea.peso())
+	}
+	
+	test "peligrosidad con misiles" {
+		bateriaAntiaerea.cargarMisiles()
+		assert.equals(100, bateriaAntiaerea.peligrosidad())
+	}
+}
+
+describe "tests contenedor portuario" {
+	
+	test "peso con knightRider" {
+		contenedor.meterCosa(knightRider)
+		
+		assert.equals(600, contenedor.peso())
+	}
+	
+	test "peso con knightRider y bumblebee" {
+		contenedor.meterCosa(knightRider)
+		contenedor.meterCosa(bumblebee)
+		
+		assert.equals(1400, contenedor.peso())
+	}
+	
+	test "peligrosidad con knightRider y bumblebee" {
+		contenedor.meterCosa(knightRider)
+		contenedor.meterCosa(bumblebee)
+		
+		assert.equals(30, contenedor.peligrosidad())
+	}
+}
+
+describe "test embalaje seguridad" {
+	test "embalaje con residuos radioactivos de 30kg" {
+		residuosRadioactivos.peso(30)
+		embalajeSeguridad.cosaQueEnvuelve(residuosRadioactivos)
+		
+		assert.equals(30, embalajeSeguridad.peso())
+	}
+	
+	test "peligrosidad de embalaje con bateria antiaerea con misiles" {		
+		bateriaAntiaerea.cargarMisiles()
+		embalajeSeguridad.cosaQueEnvuelve(bateriaAntiaerea)
+		
+		assert.equals(50, embalajeSeguridad.peligrosidad())
+		
+		}
+}
