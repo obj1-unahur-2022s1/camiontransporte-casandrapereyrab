@@ -1,3 +1,7 @@
+/*
+ * camion2: Bien!
+ */
+
 import cosas2.*
 
 object camion {
